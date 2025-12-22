@@ -1,63 +1,91 @@
 *This project has been created as part of the 42 curriculum by zahrabar*
 
 
-## Project Description
+## Description
 
-This project is part of the Born2BeRoot curriculum. Its goal is to set up a secure Linux system by configuring users, permissions, services, and security policies. It also includes comparing different Linux distributions, firewalls, and security tools to understand their differences and advantages.
+Born2BeRoot is a system administration project focused on virtualization, OS configuration, and security. The goal is to set up a secure Linux server by implementing security policies, configuring essential services, and understanding system administration practices.
 
 
 ## Instructions
 
-1. Use a Linux VM (Debian or Rocky Linux) for the setup.  
-2. Partition the disks as required.  
-3. Configure users, groups, and sudo privileges.  
-4. Install and configure services such as SSH and UFW/AppArmor.  
-5. Test security policies, including password rules, firewall rules, and AppArmor profiles.  
-6. Create a **monitoring script** that prints key information about the server and the VM.
+`Setup and Execution`
+
+1 - Use a Linux VM (Debian or Rocky Linux) for the setup.
+2 - Partition the disks as required.
+3 - Configure users, groups, and sudo privileges.
+4 - Install and configure services such as SSH and UFW.
+5 - Test security policies, including password rules, firewall rules.
+6 - Create a monitoring script that prints key information about the server and the VM.
 
 
 ## Resources
 
-- [VirtualBox Documentation](https://www.virtualbox.org/manual/UserManual.html)  
-- [Official Debian Documentation](https://www.debian.org/doc/)  
-- [AppArmor Documentation](https://documentation.ubuntu.com/server/how-to/security/apparmor/)  
-- AI assistance was used for understanding commands, best practices, and writing explanations.
+- [VirtualBox Documentation](https://www.virtualbox.org/manual/UserManual.html) - VM setup
+- [Debian Documentation](https://www.debian.org/doc/) - System installation
+- [AppArmor Documentation](https://documentation.ubuntu.com/server/how-to/security/apparmor/) - Security
+- [UFW Documentation](https://help.ubuntu.com/community/UFW) - Firewall configuration
+- `AI Usage`: Used for understanding system administration concepts, debugging configurations (SSH, sudo, password policies), optimizing the monitoring script, and explaining technical comparisons.
 
 
-## Operating System Choice
+## Project Description
 
-I chose **Debian** because it is stable, reliable, has a large community, and is easy to manage. It is well-suited for general use and beginners, unlike Rocky Linux, which is designed for enterprise environments and can be harder for newcomers to set up.
+`Operating System Choice:` *Debian vs Rocky Linux*
 
-- **Debian 12**
-  - Pros: stable, large community, beginner-friendly  
-  - Cons: older packages, slower updates
-- **Rocky Linux**
-  - Pros: enterprise-ready, secure and stable  
-  - Cons: smaller community, harder for beginners
+I chose **Debian 12** for its stability, large community, and beginner-friendly approach.
+
+`Debian Pros : ` Stable, 59,000+ packages, long-term support.
+`Debian Cons : ` Older packages, slower updates.
+
+`Rocky Pros : ` Enterprise-grade, secure and stable 
+`Rocky Cons : ` smaller community, more complex for beginners
+
+Debian is better suited for learning system administration fundamentals.
 
 
 ## Main Design Choices
 
-- **Partitioning:** Boot, root (/), swap, home (/home), var (/var), tmp (/tmp), srv (/srv), var/log  
-- **Security Policies:** SSH (no root login, custom port), password rules, firewall, sudo configuration  
-- **User Management:** Normal users with sudo privileges, root access restricted  
-- **Services Installed:** SSH, monitoring script, cockpit for monitoring and manage the server easly with a web interface 
+
+**Partitioning (LVM) :**
+
+- **/boot** (500MB): Separate bootloader protection
+- **/** (2GB): Core system files
+- **/home** (1GB): User data isolation
+- **/var** (1GB): Log file isolation prevents DoS
+- **/tmp** (500MB): Temporary files with noexec flag
+- **/var/log** (500MB): Dedicated logs
+- **swap** (1GB): Virtual memory
+
+*LVM allows flexible resizing.*
 
 
-## Comparisons
+**Security Policies :**
 
-**1. Debian vs Rocky Linux**  
-- Debian: stable, widely used, great for learning and servers  
-- Rocky Linux: enterprise-focused, compatible with RHEL, designed for businesses
+- **SSH**: Port 4242, no root login, key authentication
+- **Password**: +10 chars, 30 day expiry, 7 day Warning before expiration, complexity requirements
+- **Firewall**: UFW with default deny, only port 4242 open
+- **Sudo**: 3 attempts, log sudo commands, TTY required
 
-**2. AppArmor vs SELinux**  
-- AppArmor: easier to configure, uses profiles per program  
-- SELinux: more powerful and secure, more complex to manage
 
-**3. UFW vs firewalld**  
-- UFW: simple firewall, easy to use  
-- firewalld: more advanced, flexible, better for enterprise networks
+**User Management :**
+- Non-root user with sudo privileges. Root SSH disabled
 
-**4. VirtualBox vs UTM**  
-- VirtualBox: works on most computers, full-featured  
-- UTM: simpler, especially for macOS and ARM-based devices
+**Services :**
+- Minimal installation: SSH, UFW, monitoring script, cron.
+
+## Technical Comparisons
+
+`Debian vs Rocky Linux`
+- **Debian**: Best for learning, web servers, development. Uses APT, 2-3 year release cycle, AppArmor default.  
+- **Rocky**: Enterprise production, more Secure, SELinux default.
+
+`AppArmor vs SELinux`
+- **AppArmor**: Path-based access control, easier for beginners. Default in Debian/Ubuntu.  
+- **SELinux**: Label-based, Default in RHEL/Rocky. More powerful but complex.
+
+`UFW vs firewalld`
+- **UFW**: Simple syntax (`ufw allow 22`), perfect for single servers.
+- **firewalld**: more advanced, flexible, better for enterprise networks.
+
+`VirtualBox vs UTM`
+- **VirtualBox**:  works on most computers, full-featured.
+- **UTM**: simpler, especially for macOS but smaller community.
