@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by zakka01*
+*This project has been created as part of the 42 curriculum by zahrabar*
 
 
 ## Description
@@ -10,12 +10,12 @@ Born2BeRoot is a system administration project focused on virtualization, OS con
 
 `Setup and Execution`
 
-1 - Use a Linux VM (Debian or Rocky Linux) for the setup.
-2 - Partition the disks as required.
-3 - Configure users, groups, and sudo privileges.
-4 - Install and configure services such as SSH and UFW.
-5 - Test security policies, including password rules, firewall rules.
-6 - Create a monitoring script that prints key information about the server and the VM.
+- 1 - Use a Linux VM (Debian or Rocky Linux) for the setup.
+- 2 - Partition the disks as required.
+- 3 - Configure users, groups, and sudo privileges.
+- 4 - Install and configure services such as SSH and UFW.
+- 5 - Test security policies, including password rules, firewall rules.
+- 6 - Create a monitoring script that prints key information about the server and the VM.
 
 
 ## Resources
@@ -33,11 +33,11 @@ Born2BeRoot is a system administration project focused on virtualization, OS con
 
 I chose **Debian 12** for its stability, large community, and beginner-friendly approach.
 
-`Debian Pros : ` Stable, 59,000+ packages, long-term support.
-`Debian Cons : ` Older packages, slower updates.
+- `Debian Pros : ` Stable, beginner-friendly, easy to setup.
+- `Debian Cons : ` Older packages, slower updates.
 
-`Rocky Pros : ` Enterprise-grade, secure and stable 
-`Rocky Cons : ` smaller community, more complex for beginners
+- `Rocky Pros : ` Enterprise-grade, secure and stable.
+- `Rocky Cons : ` smaller community, more complex for beginners
 
 Debian is better suited for learning system administration fundamentals.
 
