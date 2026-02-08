@@ -1,9 +1,9 @@
-*This project has been created as part of the 42 curriculum by Zakka01*
+*This project has been created by Zakka01*
 
 
 ## Description
 
-Born2BeRoot is a system administration project focused on virtualization, OS configuration, and security. The goal is to set up a secure Linux server by implementing security policies, configuring essential services, and understanding system administration practices.
+TheRoot is a system administration project focused on virtualization, OS configuration, and security. The goal is to set up a secure Linux server by implementing security policies, configuring essential services, and understanding system administration practices.
 
 
 ## Instructions
